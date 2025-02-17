@@ -6,6 +6,6 @@ rule retrieve_data:
     input:
         f"{genomedir}/{assembly}.fa"
     output:
-        files=expand("{dir}/{id}_R1.fastq",dir=fastqdir,id=samples)
+        files=expand("{dir}/{id}_{pair}.fastq",dir=fastqdir,id=samples,pair=["R1","R2"])
     shell:
         "Rscript scripts/simulate_reads.r {fastqdir} {input}"

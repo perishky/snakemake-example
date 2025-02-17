@@ -7,6 +7,8 @@ right <- args[3]
 genome <- args[4]
 output <- args[5]
 
+cat("RUNNING meth_counts.r", sampleid, left, right, genome, output, "\n")
+
 dir.create(dirname(output), recursive=T)
 
 seq <- readLines(genome)

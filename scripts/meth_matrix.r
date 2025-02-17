@@ -4,6 +4,8 @@ args = commandArgs(trailingOnly=TRUE)
 filelist <- args[1]
 out.dir <- args[2]
 
+cat("RUNNING meth_matrix.r", readLines(filelist), out.dir, "\n")
+
 dir.create(out.dir, recursive=T)
 
 files <- readLines(filelist)

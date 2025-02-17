@@ -5,6 +5,8 @@ leftname <- args[1]
 rightname <- args[2]
 out.dir <- args[3]
 
+cat("RUNNING trim_reads.r", leftname, rightname, out.dir, "\n")
+
 dir.create(out.dir, recursive=T)
 
 left <- readLines(leftname)

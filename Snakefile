@@ -1,8 +1,11 @@
 from dotenv import dotenv_values
+import os
 
 config = dotenv_values("config.env")
 
 basedir = config['basedir']
+basedir = os.path.expanduser(basedir)
+
 assembly = config['assembly']
 
 datadir = f"{basedir}/data"

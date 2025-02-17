@@ -4,6 +4,8 @@ args = commandArgs(trailingOnly=TRUE)
 meth.filename <- args[1]
 output.filename <- args[2]
 
+cat("RUNNING meth_sum.r", meth.filename, output.filename, "\n")
+
 dir.create(dirname(output.filename), recursive=T, showWarnings=F)
 
 meth <- read.csv(meth.filename,row.names=1)

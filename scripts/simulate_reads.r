@@ -4,6 +4,8 @@ args = commandArgs(trailingOnly=TRUE)
 data.dir <- args[1]
 assembly.file <- args[2]
 
+cat("RUNNING simulate_reads.r", data.dir, assembly.file, "\n")
+
 dir.create(data.dir, recursive=T)
 
 set.seed(20240328)
