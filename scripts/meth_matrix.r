@@ -7,9 +7,9 @@ out.dir <- args[2]
 dir.create(out.dir, recursive=T)
 
 files <- readLines(filelist)
-colnames(files) <- c("sample","filename")
-files = data.frame(filename=readLines(filelist))
-files$sample = sub("\\.[^.]+$", "", files$filename)
+files = strsplit(files, " ")[[1]]
+files = data.frame(filename=files)
+files$sample = sub("\\.[^.]+$", "", basename(files$filename))
 
 dat <- lapply(files$filename, read.csv)
 names(dat) <- files$sample

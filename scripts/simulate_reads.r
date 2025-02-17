@@ -27,6 +27,6 @@ for (i in 1:6) {
     left <- paste("ATATATATC", left, sep="")
     right <- paste("ATATATATC", right, sep="")
     
-    writeLines(left, con=file.path(data.dir, paste0('sample-',i,"-R1.fastq")))
-    writeLines(right, con=file.path(data.dir, paste0('sample-',i,"-R2.fastq")))
+    writeLines(left, con=file.path(data.dir, paste0('sample-',i,"_R1.fastq")))
+    writeLines(right, con=file.path(data.dir, paste0('sample-',i,"_R2.fastq")))
 }

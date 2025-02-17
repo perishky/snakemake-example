@@ -1,8 +1,11 @@
+with open('samples.txt') as f:
+     samples = f.read().splitlines()
+
 rule retrieve_data:
     "download sequencing data"
     input:
-        "{genomedir}/{assembly}.fa"
+        f"{genomedir}/{assembly}.fa"
     output:
-	"fastq/sample-1_R1.fa"
+        files=expand("{dir}/{id}_R1.fastq",dir=fastqdir,id=samples)
     shell:
         "Rscript scripts/simulate_reads.r {fastqdir} {input}"

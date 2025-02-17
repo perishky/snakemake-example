@@ -7,7 +7,7 @@ right <- args[3]
 genome <- args[4]
 output <- args[5]
 
-dir.create(out.dir, recursive=T)
+dir.create(dirname(output), recursive=T)
 
 seq <- readLines(genome)
 cpos <- gregexpr('C',seq)[[1]]
