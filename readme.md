@@ -3,7 +3,7 @@
 Aims to demonstrate roughly how a snakemake pipeline
 could be set up for methyl-seq data.
 
-<img src="dag.png" width="200" height="150"/>
+<img src="dag.png" width="400" height="300"/>
 
 
 ### Installation
