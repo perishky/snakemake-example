@@ -5,12 +5,18 @@ could be set up for methyl-seq data.
 
 ### Installation
 
-```
-mamba create -c conda-forge -c bioconda -n snakemake snakemake
-```
+The mamba/conda environment was created with these three steps.
 
 ```
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+mamba activate snakemake
 pip3 install python-dotenv
+```
+
+Alternatively, the same could be created using [environment.yml](environment.yml).
+
+```
+conda env create -f mamba.yml
 ```
 
 ### Running the pipeline
