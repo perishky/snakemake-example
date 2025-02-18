@@ -80,6 +80,22 @@ https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html
 3. Containerizing
 4. SLURM
 
+```
+pip3 install snakemake-executor-plugin-slurm
+snakemake --executor slurm all
+
+## setup id info
+snakemake --slurm --default-resources slurm_account=<your SLURM account> slurm_partition=<your SLURM partition>
+## add to rules
+    threads: 8
+	resources:
+		mem_mb: 14000
+		partition: [cluster partition name]
+		runtime: [minutes]
+		tasks: [number tasks]
+		nodes: [number nodes]
+
+```
 
 ### TODO
 
