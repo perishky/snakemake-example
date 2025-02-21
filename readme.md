@@ -32,6 +32,10 @@ mamba install conda-forge::r-base
 conda env export --from-history > mamba.yml
 ```
 
+```
+mamba install conda-forge::apptainer
+```
+
 It can be recreated using [mamba.yml](mamba.yml).
 
 ```
@@ -41,12 +45,46 @@ mamba env create -n snakemake_example -f mamba.yml
 ### Running the pipeline
 
 Perform all steps in the pipeline
+
 ```
 mamba activate snakemake_example
 snakemake all -np ## dry run
 snakemake all     ## full run
 snakemake --dag all | dot -Tpng > dag.png ## visualize 
 ```
+
+Create container:
+
+```
+docker build -t r_docker -f docker/Dockerfile_r .
+apptainer build r_docker.sif docker://r_docker
+```
+
+If running this on your own computer
+and docker requires `sudo` access, then 
+you may need to do this:
+
+```
+sudo docker build -t r_docker -f docker/Dockerfile_r .
+sudo docker save r_docker -o r_docker.tar
+apptainer build r_docker.sif docker-archive://r_docker.tar
+```
+
+ ........... need sudo apt install fuse2fs gocryptfs .......................
+
+```
+snakemake --use-singularity all
+```
+
+https://sissource.ethz.ch/sispub/container_pipeline_tutorials/-/tree/master/ex11?ref_type=heads
+https://github.com/MRCIEU/GeneHackman
+
+## Debugging containers
+
+```
+sudo docker run -it r_docker /bin/bash
+```
+
 
 ###  Useful info
 

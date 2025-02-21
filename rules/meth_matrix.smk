@@ -8,6 +8,8 @@ rule meth_matrix:
     output:
         f"{outdir}/matrix/meth.csv",
         f"{outdir}/matrix/total.csv"
+    singularity:
+        "r_docker.sif"
     shell:
         """
         echo "{input.filenames}" > meth_count_files.txt

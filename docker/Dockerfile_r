@@ -1,0 +1,9 @@
+FROM rocker/r-ver:4.4.2
+
+RUN R -e "install.packages(c('data.table'))"
+
+# Copy pipeline scripts into the container
+COPY scripts/* /pipeline/scripts/
+COPY Snakefile /pipeline/
+
+CMD ["/bin/bash"]

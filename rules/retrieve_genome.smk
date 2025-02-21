@@ -2,6 +2,8 @@ rule retrieve_genome:
     "download genome fasta file"
     output:
         fasta=f"{genomedir}/{assembly}.fa"
+    singularity:
+        "r_docker.sif"
     shell:
-        "Rscript scripts/simulate_genome.r {output.fasta}"
+        "Rscript {input.script} {output.fasta}"
 

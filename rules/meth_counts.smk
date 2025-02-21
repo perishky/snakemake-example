@@ -6,6 +6,8 @@ rule meth_counts:
         genome=f"{genomedir}/{assembly}.fa"
     output:
         f"{outdir}/counts/" + "{id}.csv"
+    singularity:
+        "r_docker.sif"
     shell:
         "Rscript scripts/meth_counts.r {wildcards.id} {input.r1} {input.r2} {input.genome} {output}"
 
