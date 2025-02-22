@@ -1,20 +1,17 @@
+from dotenv import dotenv_values
+config = dotenv_values("config.env")
+
+datadir=config["datadir"]
+resultsdir=config["resultsdir"]
+scriptsdir=config["scriptsdir"]
+
+onstart:
+    print("##### Running minimal snakemake pipeline #####")
+
 rule all:
     input:
-        "results/output.txt"
+        f"{resultsdir}/output.txt"
 
-rule example_rule:
-    "example"
-    input:
-        "data/input.txt"
-    output:
-        "results/output.txt"
-    singularity:
-        "r_minimal.sif"
-    shell:
-        """
-	Rscript scripts/script.r {input} {output}
-	"""
-
-
+include: "rules/example_rule.smk"
 
 

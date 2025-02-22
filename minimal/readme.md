@@ -1,16 +1,29 @@
+# Minimal example of a snakemake pipeline
 
-```
-sudo docker build -t r_minimal -f Dockerfile .
-sudo docker save r_minimal -o r_minimal.tar
-sudo chown $USER r_minimal.tar
-apptainer build r_minimal.sif docker-archive://r_minimal.tar
-```
+This folder provides a basic working template for creating an analysis
+pipeline using snakemake.
 
-```
-snakemake -c1 -s Snakefile all
-```
+## Three ways to run the pipeline
 
+The pipeline can be run in three ways,
+each managing pipeline software dependencies a different way:
 
-```
-snakemake --use-singularity -c1 -s Snakefile all
-```
+1. [mamba](readme-mamba.md)
+
+2. [apptainer containers](readme-apptainer.md)
+
+3. [slurm compute cluster](readme-slurm.md)
+
+## Contents
+
+- [config.env](config.env) configuration file for paths and parameters
+
+- [Snakefile](Snakefile) pipeline
+
+- [data/input.txt](data/input.txt) toy data file for script
+
+- [docker/Dockerfile_r](docker/Dockerfile_r) instructions for generating docker image for running R scripts
+
+- [rules/example_rule.smk](rules/example_rule.smk) example rule that uses `script.r` to generate output
+
+- [scripts/script.r](scripts/script.r) toy script 
