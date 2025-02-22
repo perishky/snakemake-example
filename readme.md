@@ -1,105 +1,53 @@
-## Snakemake example for toy methyl-seq data
+## Snakemake example for toy methyl-seq analysis
 
 Aims to demonstrate roughly how a snakemake pipeline
-could be set up for methyl-seq data.
+could be set up for methyl-seq analysis.
 
 <img src="dag.png" width="400" height="300"/>
 
+Instructions for preparing and running the pipeline
+are the same as those of the
+['minimal template'](minimal/readme.md).
 
-### Installation
+## Three ways to run the pipeline
 
-Ensure that [Miniforge](https://github.com/conda-forge/miniforge) is installed, e.g. for linux
-
-```
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-bash Miniforge3-$(uname)-$(uname -m).sh
-export PATH="~/miniforge3/bin:$PATH"
-mamba init
-## logout 
-## login
-export PATH="~/miniforge3/bin:$PATH"
-mamba activate ~/miniforge3
-```
-
-The original mamba environment was created as follows:
+1. using [mamba](minimal/readme-mamba.md)
 
 ```
-mamba create --name "snakemake_example" python=3.12
-mamba activate snakemake_example
-pip3 install snakemake
-pip3 install python-dotenv
-#mamba install conda-forge::r-base
-mamba install conda-forge::apptainer
-conda env export --from-history > mamba.yml
+snakemake --snakefile Snakefile all
 ```
 
-<mark>Ensure that `docker` is [installed](https://docs.docker.com/get-started/).</mark>
-
-It can be recreated using [mamba.yml](mamba.yml).
+2. using [apptainer](minimal/readme-apptainer.md)
 
 ```
-mamba env create -n snakemake_example -f mamba.yml
+snakemake --use-singularity --snakefile Snakefile all
 ```
 
-### Running the pipeline
-
-Perform all steps in the pipeline
+3. on a [slurm cluster](minimal/readme-slurm.md)
 
 ```
-mamba activate snakemake_example
-snakemake all -np ## dry run
-snakemake all     ## full run
-snakemake --dag all | dot -Tpng > dag.png ## visualize 
+module load languages/python/3.12.3
+module load apptainer/1.3.1
+snakemake --snakefile Snakefile --profile cluster/bc4.yaml all
 ```
 
-Create container:
+## Contents
 
-```
-docker build -t r_docker -f docker/Dockerfile_r .
-apptainer build r_docker.sif docker://r_docker
-```
+- [config.env](config.env) configuration file for paths and parameters
 
-If running this on your own computer
-and docker requires `sudo` access, then 
-you may need to do this:
+- [Snakefile](Snakefile) pipeline instructions
 
-```
-sudo docker build -t r_docker -f docker/Dockerfile_r .
-sudo docker save r_docker -o r_docker.tar
-sudo chown $USER r_docker.tar
-apptainer build r_docker.sif docker-archive://r_docker.tar
-```
+- [rules/](rules) snakemake rules loaded by [Snakefile](Snakefile)
 
-Will need fuse2fs and gocryptfs for containers
-to access files outside the container.
+- [docker/Dockerfile_r](docker/Dockerfile_r) instructions for generating docker image for running R scripts
 
-```
-sudo apt install fuse2fs gocryptfs
-```
+- [scripts/](scripts) toy scripts run by the pipeline
 
-```
-snakemake --use-singularity all
-```
+- [cluster/bc4.yaml](cluster/bc4.yaml) settings for running the pipeline on a cluster called 'bc4'
 
-https://sissource.ethz.ch/sispub/container_pipeline_tutorials/-/tree/master/ex11?ref_type=heads
-https://github.com/MRCIEU/GeneHackman
+- [minimal/](minimal/readme.md) Minimal template pipeline that may be a bit easier to adapt for other projects 
 
-## Debugging containers
-
-```
-sudo docker run -it r_docker /bin/bash
-```
-
-
-###  Useful info
-
-Reference:
-https://snakemake.readthedocs.io/en/stable/
-
-Nice example:
-https://github.com/ccbskillssem/snakemake_fa23/
-
-### Learning 
+## Learning 
 
 https://snakemake.readthedocs.io/en/stable/tutorial/basics.html
 
@@ -123,26 +71,5 @@ https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html
 3. Containerizing
 4. SLURM
 
-```
-pip3 install snakemake-executor-plugin-slurm
-snakemake --executor slurm all
-
-## setup id info
-snakemake --slurm --default-resources slurm_account=<your SLURM account> slurm_partition=<your SLURM partition>
-## add to rules
-    threads: 8
-	resources:
-		mem_mb: 14000
-		partition: [cluster partition name]
-		runtime: [minutes]
-		tasks: [number tasks]
-		nodes: [number nodes]
-
-```
-
-### TODO
-
-* Add containerization
-* Add slurm
 
 

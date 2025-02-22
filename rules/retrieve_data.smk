@@ -10,4 +10,6 @@ rule retrieve_data:
     singularity:
         "r_docker.sif"
     shell:
-        "Rscript scripts/simulate_reads.r {fastqdir} {input}"
+        """
+        Rscript scripts/simulate_reads.r {fastqdir} {input}
+        """

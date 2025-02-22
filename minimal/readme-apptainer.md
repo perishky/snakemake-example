@@ -59,7 +59,7 @@ mamba install conda-forge::apptainer=1.3.6
 
 ## Create container image
 
-Create the apptainer container image (`r-minimal.sif`)
+Create the apptainer container image (`r_minimal.sif`)
 by creating a docker image and then converting
 it to apptainer format:
 

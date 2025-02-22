@@ -2,7 +2,7 @@ with open('samples.txt') as f:
      samples = f.read().splitlines()
 
 rule meth_matrix:
-    ""
+    "assemble sample methylation data into a matrix"
     input:
         filenames=expand("{dir}/counts/{id}.csv",dir=outdir,id=samples)
     output:
@@ -10,6 +10,9 @@ rule meth_matrix:
         f"{outdir}/matrix/total.csv"
     singularity:
         "r_docker.sif"
+    resources:
+        mem="100M",
+        time="01:00:00"
     shell:
         """
         echo "{input.filenames}" > meth_count_files.txt

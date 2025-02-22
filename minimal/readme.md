@@ -27,3 +27,5 @@ each managing pipeline software dependencies a different way:
 - [rules/example_rule.smk](rules/example_rule.smk) example rule that uses `script.r` to generate output
 
 - [scripts/script.r](scripts/script.r) toy script 
+
+- [cluster/bc4.yaml](cluster/bc4.yaml) settings for running the pipeline on a cluster called 'bc4'

@@ -5,5 +5,7 @@ rule retrieve_genome:
     singularity:
         "r_docker.sif"
     shell:
-        "Rscript {input.script} {output.fasta}"
+        """
+        Rscript scripts/simulate_genome.r {output.fasta}
+        """
 
