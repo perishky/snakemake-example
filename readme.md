@@ -28,13 +28,12 @@ mamba create --name "snakemake_example" python=3.12
 mamba activate snakemake_example
 pip3 install snakemake
 pip3 install python-dotenv
-mamba install conda-forge::r-base
+#mamba install conda-forge::r-base
+mamba install conda-forge::apptainer
 conda env export --from-history > mamba.yml
 ```
 
-```
-mamba install conda-forge::apptainer
-```
+<mark>Ensure that `docker` is [installed](https://docs.docker.com/get-started/).</mark>
 
 It can be recreated using [mamba.yml](mamba.yml).
 
@@ -67,10 +66,16 @@ you may need to do this:
 ```
 sudo docker build -t r_docker -f docker/Dockerfile_r .
 sudo docker save r_docker -o r_docker.tar
+sudo chown $USER r_docker.tar
 apptainer build r_docker.sif docker-archive://r_docker.tar
 ```
 
- ........... need sudo apt install fuse2fs gocryptfs .......................
+Will need fuse2fs and gocryptfs for containers
+to access files outside the container.
+
+```
+sudo apt install fuse2fs gocryptfs
+```
 
 ```
 snakemake --use-singularity all

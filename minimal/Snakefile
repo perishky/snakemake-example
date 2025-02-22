@@ -1,0 +1,20 @@
+rule all:
+    input:
+        "results/output.txt"
+
+rule example_rule:
+    "example"
+    input:
+        "data/input.txt"
+    output:
+        "results/output.txt"
+    singularity:
+        "r_minimal.sif"
+    shell:
+        """
+	Rscript scripts/script.r {input} {output}
+	"""
+
+
+
+
