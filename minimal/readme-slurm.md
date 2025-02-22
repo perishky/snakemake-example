@@ -27,7 +27,7 @@ pip3 install python-dotenv==1.0.1
 ## Create container image
 
 Create the container image as
-[previously described](readme-apptainer.md#-Create-container-image). 
+[previously described](readme-apptainer.md#create-container-image). 
 
 ## Run the pipeline 
 
