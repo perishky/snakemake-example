@@ -7,7 +7,7 @@ rule meth_counts:
     output:
         f"{outdir}/counts/" + "{id}.csv"
     singularity:
-        "r_docker.sif"
+        "r_methylseq.sif"
     resources:
         mem="100M",     
         time="01:00:00" 

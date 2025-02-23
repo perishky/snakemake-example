@@ -1,0 +1,6 @@
+paths:
+    data: &pathdata '/tmp/snakemake-minimal-example-data'
+    results: 'example-results'
+
+use-apptainer: True
+apptainer-args: '-B *pathdata'

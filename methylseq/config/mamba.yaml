@@ -1,0 +1,7 @@
+paths:
+    data: '/tmp/snakemake-example-methylseq-data'
+    results: 'example-results'
+
+parameters:
+    assembly: 'hg19'
+

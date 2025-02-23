@@ -11,5 +11,5 @@ rule example_rule:
         time="01:00:00" ## hh:mm:ss
     shell:
         """
-	Rscript {scriptsdir}/script.r {input.text} {output.text}
+	Rscript scripts/script.r {input.text} {output.text}
 	"""

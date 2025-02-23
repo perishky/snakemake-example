@@ -8,7 +8,7 @@ rule retrieve_data:
     output:
         files=expand("{dir}/{id}_{pair}.fastq",dir=fastqdir,id=samples,pair=["R1","R2"])
     singularity:
-        "r_docker.sif"
+        "r_methylseq.sif"
     shell:
         """
         Rscript scripts/simulate_reads.r {fastqdir} {input}

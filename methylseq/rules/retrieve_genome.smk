@@ -3,7 +3,7 @@ rule retrieve_genome:
     output:
         fasta=f"{genomedir}/{assembly}.fa"
     singularity:
-        "r_docker.sif"
+        "r_methylseq.sif"
     shell:
         """
         Rscript scripts/simulate_genome.r {output.fasta}

@@ -1,0 +1,4 @@
+paths:
+    data: '/tmp/snakemake-minimal-example-data'
+    results: 'example-results'
+

@@ -1,4 +1,4 @@
-# Snakemake pipeline on a slurm compute cluster
+# Snakemake pipeline installation on a slurm compute cluster
 
 We have chosen to run the containerized pipeline
 on the cluster to minimize the number of software dependencies
@@ -29,13 +29,3 @@ pip3 install python-dotenv==1.0.1
 Create the container image as
 [previously described](readme-apptainer.md#create-container-image). 
 
-## Run the pipeline 
-
-On a cluster login node, load the python and apptainer modules
-and run the pipeline with cluster-specific settings.
-
-```
-module load languages/python/3.12.3
-module load apptainer/1.3.1
-snakemake --snakefile Snakefile --profile cluster/bc4.yaml all
-```

@@ -1,4 +1,4 @@
-# Snakemake pipeline with mamba software management
+# Snakemake pipeline installation using mamba software management
 
 ## Install mamba
 
@@ -21,11 +21,7 @@ If it is not already installed, R can be installed using mamba:
 mamba install conda-forge::r-base=4.4.2
 ```
 
-## Run the pipeline
 
-```
-snakemake --snakefile Snakefile all
-```
 
 
 

@@ -1,4 +1,4 @@
-# Snakemake pipeline with apptainer containers
+# Snakemake pipeline installation using apptainer containers
 
 A pipeline can be containerized by running the entire pipeline within a
 container.  The upside of this approach is simplicity, everything runs inside
@@ -80,9 +80,5 @@ sudo chown $USER ${IMAGE}.tar
 apptainer build ${IMAGE}.sif docker-archive://${IMAGE}.tar
 ```
 
-## Run the pipeline 
 
-```
-snakemake --use-singularity --snakefile Snakefile all
-```
 

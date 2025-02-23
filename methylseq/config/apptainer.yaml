@@ -1,0 +1,9 @@
+paths:
+    data: &pathdata '/tmp/snakemake-example-methylseq-data'
+    results: 'example-results'
+
+parameters:
+    assembly: 'hg19'
+
+use-apptainer: True
+apptainer-args: '-B *pathdata'

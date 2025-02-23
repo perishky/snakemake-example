@@ -7,7 +7,7 @@ rule trim_reads:
         r1=f"{outdir}/trimmed/" + "{id}_R1.fastq",
         r2=f"{outdir}/trimmed/" + "{id}_R2.fastq"
     singularity:
-        "r_docker.sif"
+        "r_methylseq.sif"
     resources:
         mem="100M",
         time="01:00:00"
