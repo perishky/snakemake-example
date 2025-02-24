@@ -1,11 +1,11 @@
 rule meth_counts:
     "count methylated/unmethylated reads per dnam site"
     input:
-        r1=f"{outdir}/trimmed/" + "{id}_R1.fastq",
-        r2=f"{outdir}/trimmed/" + "{id}_R2.fastq",
+        r1=f"{outdir}/trimmed/{{id}}_R1.fastq",
+        r2=f"{outdir}/trimmed/{{id}}_R2.fastq",
         genome=f"{genomedir}/{assembly}.fa"
     output:
-        f"{outdir}/counts/" + "{id}.csv"
+        f"{outdir}/counts/{{id}}.csv"
     container:
         "r_methylseq.sif"
     resources:

@@ -1,11 +1,11 @@
 rule trim_reads:
     "trim junk from sequencing reads"
     input:
-        r1=f"{fastqdir}/" + "{id}_R1.fastq",
-        r2=f"{fastqdir}/" + "{id}_R2.fastq"
+        r1=f"{fastqdir}/{{id}}_R1.fastq",
+        r2=f"{fastqdir}/{{id}}_R2.fastq"
     output:
-        r1=f"{outdir}/trimmed/" + "{id}_R1.fastq",
-        r2=f"{outdir}/trimmed/" + "{id}_R2.fastq"
+        r1=f"{outdir}/trimmed/{{id}}_R1.fastq",
+        r2=f"{outdir}/trimmed/{{id}}_R2.fastq"
     container:
         "r_methylseq.sif"
     resources:
