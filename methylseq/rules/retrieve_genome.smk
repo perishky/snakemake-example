@@ -2,7 +2,7 @@ rule retrieve_genome:
     "download genome fasta file"
     output:
         fasta=f"{genomedir}/{assembly}.fa"
-    singularity:
+    container:
         "r_methylseq.sif"
     shell:
         """

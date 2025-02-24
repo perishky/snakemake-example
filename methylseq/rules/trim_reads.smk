@@ -6,7 +6,7 @@ rule trim_reads:
     output:
         r1=f"{outdir}/trimmed/" + "{id}_R1.fastq",
         r2=f"{outdir}/trimmed/" + "{id}_R2.fastq"
-    singularity:
+    container:
         "r_methylseq.sif"
     resources:
         mem="100M",

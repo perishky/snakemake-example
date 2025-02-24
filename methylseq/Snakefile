@@ -5,6 +5,9 @@ outdir = config['paths']['results']
 
 assembly = config['parameters']['assembly']
 
+with open('samples.txt') as f:
+     samples = f.read().splitlines()
+
 onstart:
     print("##### Running example snakemake pipeline #####")
 

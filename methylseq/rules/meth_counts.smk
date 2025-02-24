@@ -6,7 +6,7 @@ rule meth_counts:
         genome=f"{genomedir}/{assembly}.fa"
     output:
         f"{outdir}/counts/" + "{id}.csv"
-    singularity:
+    container:
         "r_methylseq.sif"
     resources:
         mem="100M",     

@@ -5,7 +5,7 @@ rule meth_sum:
         f"{outdir}/matrix/meth.csv"
     output:
         f"{outdir}/matrix/sum.csv"
-    singularity:
+    container:
         "r_methylseq.sif"
     resources:
         mem="100M",
